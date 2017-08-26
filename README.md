@@ -41,4 +41,3 @@ gulp
 Run django development server.
 ```bash
 make server
-```
