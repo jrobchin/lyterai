@@ -1,0 +1,27 @@
+{
+  "name": "openaihub",
+  "version": "1.0.0",
+  "description": "*An experiment to bring AI to open source and promote collaboration within the community.* <hr> <br> OpenAIHub was created to allow the AI community to contribute their data and expertise in collaboration to create models accessible to developers.",
+  "main": "index.js",
+  "dependencies": {
+    "foundation-sites": "^6.4.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-sass": "^3.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrobchin/openaihub.git"
+  },
+  "author": "Jason Chin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrobchin/openaihub/issues"
+  },
+  "homepage": "https://github.com/jrobchin/openaihub#readme"
+}
