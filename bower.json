@@ -16,6 +16,6 @@
     "public/bower_components"
   ],
   "dependencies": {
-    "foundation": "^5.5.3"
+    "foundation-sites": "^6.4.1"
   }
 }
