@@ -2,7 +2,7 @@ server:
 	python manage.py runserver 0.0.0.0:8000
 
 env:
-	source activate openaihub
+	source activate lyterai
 
 migrations:
 	python manage.py makemigrations
@@ -17,3 +17,5 @@ makemigrate:
 shell:
 	python manage.py shell
 
+seed:
+	python hub/seeder/seed.py

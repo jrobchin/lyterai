@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'hub',
 
     # Vendor
-    'djangobower',
     'positions',
     'jsonfield',
 
@@ -130,31 +129,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/public/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'public')
+STATIC_ROOT = os.path.join(BASE_DIR, 'public')
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'public'),
+    # os.path.join(BASE_DIR, 'assets'),
+    os.path.join(BASE_DIR, 'assets', 'img'),
 )
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-
-    # Vendor
-    'djangobower.finders.BowerFinder',
 ]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'components')
-
-BOWER_INSTALLED_APPS = [
-    'foundation-sites#6.4.1',
-    'jquery#3.2.1',
-    'underscore#1.8.3',
-    'what-input#4.1.6'
-]
 
 # Model Storage
 MODEL_URL = "/models/"

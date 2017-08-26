@@ -1,7 +1,7 @@
 {
-  "name": "openaihub",
+  "name": "lyterai",
   "version": "1.0.0",
-  "description": "*An experiment to bring AI to open source and promote collaboration within the community.* <hr> <br> OpenAIHub was created to allow the AI community to contribute their data and expertise in collaboration to create models accessible to developers.",
+  "description": "*An experiment to bring AI to open source and promote collaboration within the community.* <hr> <br> lyterai was created to allow the AI community to contribute their data and expertise in collaboration to create models accessible to developers.",
   "main": "index.js",
   "dependencies": {
     "foundation-sites": "^6.4.1"
@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jrobchin/openaihub.git"
+    "url": "git+https://github.com/jrobchin/lyterai.git"
   },
   "author": "Jason Chin",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jrobchin/openaihub/issues"
+    "url": "https://github.com/jrobchin/lyterai/issues"
   },
-  "homepage": "https://github.com/jrobchin/openaihub#readme"
+  "homepage": "https://github.com/jrobchin/lyterai#readme"
 }
