@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="title-text">
+		<!-- <img src="{{ model.image.url }}"> -->
+		<h2>{{ model.name }}</h2>
+		<p>{{ model.description }}</p>
+		<p><strong>Accuracy:</strong> 	{{ model.accuracy|floatformat:2 }}%</p>
+	</div>
+
+
+	<hr>
+	
+  <!-- 
+	EXAMPLES
+	-->
+	<div class="examples">
+		<h4>Examples</h4>
+		<div class="cards">
+			<div class="grid-x grid-margin-x">
+				{% for example in model.example_set.all|dictsort:"position" %}
+			  <!-- 
+				CARD
+				-->
+				<div class="small-12 medium-6 xlarge-4 xxlarge-3 cell">
+					<div class="card">
+					  <div class="card-section example-image">
+					  	<a target="blank" href="{{ example.source }}">
+						  	<img src="{{ example.image.url }}">
+					  	</a>
+					  </div>
+					  {% if example.description %}
+					  <div class="card-section">
+					    <p>{{ example.description }}</p>
+					  </div>
+					  {% endif %}
+					</div>
+				</div>
+			  <!-- 
+				END CARD
+				-->
+				{% endfor %}
+
+			</div>
+		</div>
+	</div>
+
+
+	<hr>
+
+  <!-- 
+	ARCHITECTURE
+	-->
+	<h4>Architecture</h4>
+	<div class="grid-x">
+		<!-- <div class="spacer small-12 medium-2 large-3 cell">
+		</div> -->
+		<div class="small-12 medium-8 large-6 cell">
+			<div class="architecture">
+				<table>
+				  <thead>
+				    <tr>
+				      <th>Layer</th>
+				      <th>Type</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+						{% for layer in layers %}
+					  <!-- 
+						LAYER ROW
+						-->
+						<tr>
+						  <td>{{ layer.name }}</td>
+					  	{% if layer.properties %}
+						  <td class="layer-property">
+						  	<a data-toggle="property-dropdown-{{ layer.id }}">{{ layer.type }}</a>
+						  	<div class="dropdown-pane" data-position="bottom" data-alignment="left" id="property-dropdown-{{ layer.id }}" data-dropdown data-auto-focus="true">
+						  		<h6><strong>Layer Properties:</strong></h6>
+						  		{# <button class="close-dropdown" data-toggle="property-dropdown-{{ layer.id }}">X</button> #}
+						  		{% for p in layer.properties %}
+						  		<p>{{ p }}</p>
+						  		{% endfor %}
+						  	</div>
+					  	{% else %}
+					  	<td>
+					  		{{ layer.layer_type }}
+					  	{% endif %}
+						  </td>
+						</tr>
+					  <!-- 
+						END LAYER ROW
+						-->
+						{% endfor %}
+				  </tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+  <!-- 
+	END ARCHITECTURE
+	-->
+
+
+	<hr>
+
+  <!-- 
+	ABOUT
+	-->
+	{% if model.about %}
+	<div class="architecture">
+		<h4>About</h4>
+		<p>{{ model.about|safe }}</p>
+	</div>
+	{% endif %}
+  <!-- 
+	END ABOUT
+	-->
+
+
+	<hr>
+
+  <!-- 
+	DEMO
+	-->
+	{% if model.demo %}
+	
+	{% endif %}
+  <!-- 
+	END DEMO
+	-->
+
+{% endblock %}

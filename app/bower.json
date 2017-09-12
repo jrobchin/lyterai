@@ -1,0 +1,21 @@
+{
+  "name": "lyterai",
+  "description": "*An experiment to bring AI to open source and promote collaboration within the community.* <hr> <br> lyterai was created to allow the AI community to contribute their data and expertise in collaboration to create models accessible to developers.",
+  "main": "index.js",
+  "authors": [
+    "Jason Chin"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/jrobchin/lyterai",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "public/bower_components"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.4.1"
+  }
+}

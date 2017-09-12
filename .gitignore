@@ -1,7 +1,12 @@
-node_modules/*
-db.sqlite3
-components/*
-public/*
-media/*
-storage/*
+app/node_modules/*
+app/db.sqlite3
+app/components/*
+app/public/*
+app/media/*
+app/storage/*
 
+env/data/postgres/*
+env/data/redis/*
+
+logs/gunicorn/*
+logs/nginx/*
