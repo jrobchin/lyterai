@@ -1,0 +1,15 @@
+Django==1.11.4
+django-positions==0.5.5
+jsonfield==2.0.2
+olefile==0.44
+Pillow==4.2.1
+pytz==2017.2
+numpy
+scipy
+scikit-learn
+h5py
+keras
+gunicorn
+tensorflow
+requests
+psycopg2

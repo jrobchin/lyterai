@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	<h1>Welcome to LyterAI!</h1>
+	<p>LyterAI was created to make the power of artifical intelligence and machine learning more accessible to people and businesses.</p>
+	<hr>
+	<h4>Models</h4>
+
+	<!-- CARDS -->
+	<div class="cards">
+		<div class="grid-x grid-margin-x">
+		{% for model in models %}
+			<div class="small-12 medium-6 xlarge-4 xxlarge-3 cell">
+				<div class="card">
+				  <div class="card-divider">
+				    <a href="{% url 'hub:show' slug=model.slug %}" style="color: black;">{{ model.name }}</a>
+				  </div>
+			  	{% if model.image %}
+				  <div class="card-section model-image">
+				  	<a href="{% url 'hub:show' slug=model.slug %}"><img src="{{ model.image.url }}"></a>
+			  	{% else %}
+				  <div class="card-section missing-image">
+				  	<div>This model is missing an image.</div>
+			  	{% endif %}
+				  </div>
+				  <div class="card-section">
+				  	<p style="margin-bottom: 0;"><strong>Accuracy:</strong> {{ model.accuracy|floatformat:2 }}%</p>
+				    <p>{{ model.description }}</p>
+				  </div>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+
+{% endblock %}
+

@@ -1,0 +1,73 @@
+version: '2'
+
+services:
+    ## Application Containers ##
+    # Django
+    python:
+        build:
+            context: ./env/python
+        networks:
+            - images-net
+        volumes:
+            - ./logs/gunicorn:/var/logs/gunicorn 
+        volumes_from:
+            - volumes_source
+            - volumes_data
+        ports:
+            - "8000:8000"
+        working_dir: /var/www/app/
+        command: make server
+        env_file: ./env/.env
+        depends_on: 
+            - db
+    # Nginx
+    nginx:
+        build:
+            context: ./env/nginx
+        volumes_from:
+            - volumes_source
+        networks:
+            - images-net
+        volumes:
+            - ./logs/nginx/:/var/log/nginx
+        ports:
+           - "80:80"
+        links:
+            - python:python
+    # PostgreSQL
+    db:
+        image: postgres
+        environment:
+            POSTGRES_DB: lyter
+            POSTGRES_USER: lyter
+            POSTGRES_PASSWORD: lightereheye
+        volumes_from:
+            - volumes_data
+        networks:
+            - images-net
+        ports:
+            - "5432:5432"
+    # Front-end compilers
+    frontend:
+        build:
+            context: ./env/frontend
+        volumes_from:
+            - volumes_source
+        working_dir: /var/www/app/
+        command: echo front
+
+    ## Data Containers ##
+    # Code
+    volumes_source:
+        image: tianon/true
+        volumes:
+            - ./app:/var/www/app
+    # Database
+    volumes_data:
+        image: tianon/true
+        volumes:
+            - ./env/data/redis:/data
+            - ./env/data/postgres:/var/lib/postgresql/data
+
+networks:
+    images-net:

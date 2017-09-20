@@ -1,0 +1,4 @@
+model_slug,image,description,source
+real-estate-room-classifier,media/examples/bathroom-condosca-labeled.jpg,,http://condos.ca
+real-estate-room-classifier,media/examples/kitchen-propertyca-labeled.jpg,,http://property.ca
+real-estate-room-classifier,media/examples/living_room-condosca-labeled.jpg,,http://condos.ca
