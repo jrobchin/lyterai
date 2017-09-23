@@ -4,7 +4,7 @@
 LyterAi was created to allow the AI community to contribute their data and expertise in collaboration to create models accessible to developers.
 <hr>
 
-## Setup (Untested)
+## Setup
 Requirements outside of Conda env:
 ```bash
 nodejs
