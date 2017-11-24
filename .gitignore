@@ -1,6 +1,9 @@
+.pyc
+
+work-notes.txt
+
 app/node_modules/*
 app/db.sqlite3
-app/components/*
 app/public/*
 app/media/*
 app/storage/*

@@ -21,6 +21,8 @@ from . import views
 urlpatterns = [
     # Model view page
     url(r'^show/(?P<slug>.*)$', views.show, name='show'),
+    # Demo submission endpoint
+    url(r'^demo$', views.demo, name='demo'),
 
 	# List of all models
 	url(r'^$', views.index, name='index')

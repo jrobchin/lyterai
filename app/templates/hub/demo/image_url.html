@@ -1,0 +1,27 @@
+<form id="demo-form" action="{% url 'hub:demo' %}" method="POST">{% csrf_token %}
+  <div class="row">
+    <div class="small-8 columns">
+      <div class="row">
+        <div class="small-3 columns">
+          <label for="image-url-input" class="right inline">Image Url</label>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" id="image-url-input" placeholder="Enter an image url" name="data">
+        </div>
+
+        <input type="hidden" name="model-id" value="{{ model.pk }}">
+        <input type="submit" class="button" id="demo-submit" value="Make Prediction">
+      </div>
+    </div>
+  </div>
+</form>
+<div class="row">
+  <div class="small-8 columns">
+    <div class="row">
+      Prediction: <span id="demo-prediction"></span>
+    </div>
+    <div class="row">
+      Confidence: <span id="demo-confidence"></span>
+    </div>
+  </div>
+</div>

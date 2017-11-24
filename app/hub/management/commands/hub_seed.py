@@ -47,6 +47,7 @@ class Command(BaseCommand):
             for row in reader:
                 try:
                     model = MLModel.objects.filter(slug=row['model_slug']).first()
+                    print(model, row['model_slug'])
                     if model:
                         print("  Seeding example for:", model)
                         example = Example(ml_model=model, description=row['description'], source=row['source'])

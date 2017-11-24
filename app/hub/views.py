@@ -1,9 +1,11 @@
 import json
 
 from django.shortcuts import get_object_or_404, render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 
 from .models import MLModel, Layer, Example
+
+from .demo import model_demo
 
 def index(request):
 	# Query all available models
@@ -17,6 +19,7 @@ def show(request, slug):
 	model = get_object_or_404(MLModel, slug=slug)
 	if model:
 		layers = []
+		# Get properties for each layer
 		for layer in model.layer_set.all():
 			# TODO: sort by key alphabetically or otherwise
 			ps = []
@@ -34,3 +37,16 @@ def show(request, slug):
 			})
 
 	return render(request, 'hub/show.html', {'model': model, 'layers': layers})
+
+def demo(request):
+	if request.POST:
+		try:
+			prediction, confidence = model_demo.model_demo(request.POST['model-id'], request.POST['data'])
+		except Exception as e:
+			raise(e)
+		if prediction:
+			return JsonResponse({'prediction': prediction, 'confidence': confidence})
+		else:
+			return JsonResponse({'prediction': 'error', 'confidence': 'error'})
+	else:
+		return HttpResponse("Error: Cannot get demo.")

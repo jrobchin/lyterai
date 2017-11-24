@@ -19,10 +19,12 @@ class MLModel(models.Model):
 
 	name = models.CharField(max_length=200, unique=True)
 	category = models.CharField(max_length=200)
+	data_type = models.CharField(max_length=50, null=True)
 	description = models.TextField(max_length=140)
 	about = models.TextField(null=True, blank=True)
 	slug = models.SlugField(max_length=100, unique=True, null=True, blank=True)
 	demo = models.BooleanField(blank=True, default=False)
+	output_classes = models.CharField(blank=True, max_length=1000)
 	framework = models.CharField(max_length=50, null=True, blank=True)
 	model = models.FileField(upload_to=get_model_upload_to, storage=model_fs, null=True, blank=True)
 	weights = models.FileField(upload_to=get_model_upload_to, storage=model_fs, null=True, blank=True)
@@ -40,6 +42,9 @@ class MLModel(models.Model):
 			if self.model.readable():
 				file_ext = self.model.name.split(".")[-1]
 				file_contents = self.model.read()
+				# LOGGING
+				print("File ext: {}".format(file_ext))
+				print("File contents: {}".format(file_contents))
 				layers = model_parse.parse(file_contents, ext=file_ext, framework=self.framework)
 
 				print("LAYERS: {}".format(layers))
@@ -60,6 +65,12 @@ class MLModel(models.Model):
 	def __str__(self):
 		return "{}: {}".format(self.name, self.category)
 
+class Dimension(models.Model):
+	ml_model = models.ForeignKey(MLModel, on_delete=models.CASCADE)
+	dimension = models.CharField(max_length=1)
+	value = models.IntegerField()
+	dtype = models.CharField(max_length=100)
+
 class Example(models.Model):
 	ml_model = models.ForeignKey(MLModel, on_delete=models.CASCADE)
 	position = PositionField(collection="ml_model")
@@ -79,3 +90,24 @@ class Layer(models.Model):
 
 	def __str__(self):
 		return "{}: {}".format(self.ml_model.name, self.name)
+
+class Preprocessor(models.Model):
+	ml_model = models.ForeignKey(MLModel, on_delete=models.CASCADE)
+	position = PositionField(collection='ml_model')
+	ptype = models.CharField(max_length=100)
+
+# For use in storing classifier outputs
+class Classes(models.Model):
+	ml_model = models.ForeignKey(MLModel, on_delete=models.CASCADE)
+	position = PositionField(collection='ml_model') # index
+	label = models.CharField(max_length=100)
+
+class DemoResults(models.Model):
+	ml_model = models.ForeignKey(MLModel)
+	data = models.CharField(max_length=100, null=True, blank=True)
+	file = models.FileField(upload_to='demos/', null=True, blank=True)
+	prediction = models.CharField(max_length=100)
+	confidence = models.FloatField(null=True, blank=True)
+
+	def __str__(self):
+		return "{} - {}: {}".format(self.pk, self.ml_model.name, self.data)

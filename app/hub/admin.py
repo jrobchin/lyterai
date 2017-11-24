@@ -1,10 +1,11 @@
 from django.contrib import admin
 
-from .models import MLModel, Layer, Example
+from .models import MLModel, Layer, Example, Dimension, Preprocessor, DemoResults
 
-class LayerAdmin(admin.ModelAdmin):
-	list_filter = ('name', 'layer_type', 'ml_model')
-	list_display = ('name', 'layer_type', 'ml_model')
+class DemoResultsInline(admin.StackedInline):
+    model = DemoResults
+    extra = 1
+    show_change_link = True
 
 class LayerInline(admin.StackedInline):
     model = Layer
@@ -16,8 +17,18 @@ class ExampleInline(admin.StackedInline):
     extra = 1
     show_change_link = True
 
+class DimensionInline(admin.StackedInline):
+    model = Dimension
+    extra = 1
+    show_change_link = True
+
+class PreprocessorInline(admin.StackedInline):
+    model = Preprocessor
+    extra = 1
+    show_change_link = True
+
 class MLModelAdmin(admin.ModelAdmin):
-	inlines = [LayerInline, ExampleInline]
+	inlines = [DimensionInline, PreprocessorInline, LayerInline, ExampleInline, DemoResultsInline]
 	date_hierarchy = 'updated_at'
 	list_filter = ('name', 'category', 'accuracy', 'updated_at')
 	list_display = ('name', 'category', 'accuracy', 'updated_at')
@@ -25,4 +36,3 @@ class MLModelAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(MLModel, MLModelAdmin)
-admin.site.register(Layer, LayerAdmin)

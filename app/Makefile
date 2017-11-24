@@ -27,6 +27,9 @@ front:
 	gulp
 
 # Docker
+pybash:
+	sudo docker-compose run python bash
+
 dbuild:
 	sudo docker-compose build
 

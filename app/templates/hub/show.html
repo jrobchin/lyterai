@@ -45,7 +45,26 @@
 			</div>
 		</div>
 	</div>
+	<!-- 
+	END EXAMPLES
+	-->
 
+	<hr>
+
+	<!-- 
+	DEMO
+	-->
+	<div class="demo">
+		<h4>Demo</h4>
+		<div>
+		{% if model.demo %}
+			{% include "hub/demo/image_url.html" %}
+		{% endif %}
+		</div>
+	</div>
+  <!-- 
+	END DEMO
+	-->
 
 	<hr>
 
@@ -101,7 +120,6 @@
 	END ARCHITECTURE
 	-->
 
-
 	<hr>
 
   <!-- 
@@ -119,15 +137,5 @@
 
 
 	<hr>
-
-  <!-- 
-	DEMO
-	-->
-	{% if model.demo %}
-	
-	{% endif %}
-  <!-- 
-	END DEMO
-	-->
 
 {% endblock %}
