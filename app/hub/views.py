@@ -45,7 +45,7 @@ def demo(request):
 		except Exception as e:
 			raise(e)
 		if prediction:
-			return JsonResponse({'prediction': prediction, 'confidence': confidence})
+			return JsonResponse({'image-url': request.POST['data'],'prediction': prediction, 'confidence': confidence})
 		else:
 			return JsonResponse({'prediction': 'error', 'confidence': 'error'})
 	else:

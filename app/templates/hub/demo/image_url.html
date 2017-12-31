@@ -3,10 +3,10 @@
     <div class="small-8 columns">
       <div class="row">
         <div class="small-3 columns">
-          <label for="image-url-input" class="right inline">Image Url</label>
+          <label for="image-url-input" class="right inline">Image Url (Enter an image url that ends in .jpg, .gif, .png, .tif, .svg or .jpeg)</label>
         </div>
         <div class="small-9 columns">
-          <input type="text" id="image-url-input" placeholder="Enter an image url" name="data">
+          <input type="text" id="image-url-input" placeholder="Enter an image url" name="data" value="https://en.wikipedia.org/wiki/Bedroom#/media/File:Bedroom_Mitcham.jpg">
         </div>
 
         <input type="hidden" name="model-id" value="{{ model.pk }}">
@@ -17,6 +17,8 @@
 </form>
 <div class="row">
   <div class="small-8 columns">
+    <div class="row">
+      Input: <img id="demo-image" src=""/>
     <div class="row">
       Prediction: <span id="demo-prediction"></span>
     </div>

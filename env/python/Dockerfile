@@ -10,4 +10,8 @@ ARG PGID=1000
 RUN groupadd -g $PGID django && \
     useradd -u $PUID -g django -m django
 
+RUN usermod -u 1000 django
+RUN usermod -G staff django
+
 USER django
+
