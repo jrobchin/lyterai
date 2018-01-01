@@ -3,10 +3,13 @@ clean:
 
 # Backend
 production:
-	gunicorn lyterai.wsgi --bind 0.0.0.0:8000 
+	gunicorn lyterai.wsgi --bind 0.0.0.0:8000
 
 server:
 	python manage.py runserver 0.0.0.0:8000
+
+office:
+	python modeloffice/api.py
 
 shell:
 	python manage.py shell

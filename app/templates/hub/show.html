@@ -72,6 +72,11 @@
 	ARCHITECTURE
 	-->
 	<h4>Architecture</h4>
+	{% if model.about %}
+	<div class="architecture">
+		<p>{{ model.about|safe }}</p>
+	</div>
+	{% endif %}
 	<div class="grid-x">
 		<!-- <div class="spacer small-12 medium-2 large-3 cell">
 		</div> -->
@@ -119,23 +124,5 @@
   <!-- 
 	END ARCHITECTURE
 	-->
-
-	<hr>
-
-  <!-- 
-	ABOUT
-	-->
-	{% if model.about %}
-	<div class="architecture">
-		<h4>About</h4>
-		<p>{{ model.about|safe }}</p>
-	</div>
-	{% endif %}
-  <!-- 
-	END ABOUT
-	-->
-
-
-	<hr>
 
 {% endblock %}

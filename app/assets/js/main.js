@@ -15,6 +15,7 @@ $("#demo-form").submit(function(event) {
         url:$(this).attr('action'),
         data:$(this).serialize(),
         success: function(data){
+            $('#demo-image').attr('src', data['image-url']);
             $("#demo-prediction").empty().append(data['prediction']);
             $("#demo-confidence").empty().append(data['confidence']);
         }

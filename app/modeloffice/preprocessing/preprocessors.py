@@ -33,7 +33,6 @@ class ImagePreprocessor(object):
             if file_suffix in suffix_list and r.status_code == requests.codes.ok:
                 file = ContentFile(r.content, file_name)
                 
-                demo = DemoResults(ml_model=self.model)
                 demo.data = file_url
                 demo.file = file
                 demo.save()
