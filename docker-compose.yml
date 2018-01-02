@@ -16,7 +16,25 @@ services:
         ports:
             - "8000:8000"
         working_dir: /var/www/app/
-        command: make server
+        command: make production
+        env_file: ./env/.env
+        depends_on: 
+            - db
+    # Flask
+    office:
+        build:
+            context: ./env/python
+        networks:
+            - images-net
+        volumes:
+            - ./logs/gunicorn:/var/logs/gunicorn 
+        volumes_from:
+            - volumes_source
+            - volumes_data
+        ports:
+            - "5000:5000"
+        working_dir: /var/www/app/
+        command: make office
         env_file: ./env/.env
         depends_on: 
             - db
@@ -71,3 +89,4 @@ services:
 
 networks:
     images-net:
+        driver: bridge
