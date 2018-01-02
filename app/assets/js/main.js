@@ -10,6 +10,10 @@ $("#demo-form").submit(function(event) {
     /* stop form from submitting normally */
     event.preventDefault();
 
+    $('#demo-image').attr('src', '');
+    $("#demo-prediction").empty().append('Loading prediction');
+    $("#demo-confidence").empty().append('Loading confidence');
+
     $.ajax({
         type:$(this).attr('method'),
         url:$(this).attr('action'),
